@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--universal dps -->
+    <dimen name="universal_0dp">0dp</dimen>
+    <dimen name="universal_1dp">1dp</dimen>
+    <dimen name="universal_2dp">2dp</dimen>
+    <dimen name="universal_3dp">3dp</dimen>
+    <dimen name="universal_5dp">5dp</dimen>
+    <dimen name="universal_4dp">4dp</dimen>
+    <dimen name="universal_6dp">6dp</dimen>
+    <dimen name="universal_8dp">8dp</dimen>
+    <dimen name="universal_9dp">9dp</dimen>
+    <dimen name="universal_10dp">10dp</dimen>
+    <dimen name="universal_12dp">12dp</dimen>
+    <dimen name="universal_14dp">14dp</dimen>
+    <dimen name="universal_15dp">15dp</dimen>
+    <dimen name="universal_16dp">16dp</dimen>
+    <dimen name="universal_18dp">18dp</dimen>
+    <dimen name="universal_19dp">19dp</dimen>
+    <dimen name="universal_20dp">20dp</dimen>
+    <dimen name="universal_22dp">22dp</dimen>
+    <dimen name="universal_24dp">24dp</dimen>
+    <dimen name="universal_25dp">25dp</dimen>
+    <dimen name="universal_26dp">26dp</dimen>
+    <dimen name="universal_30dp">30dp</dimen>
+    <dimen name="universal_32dp">32dp</dimen>
+    <dimen name="universal_35dp">35dp</dimen>
+    <dimen name="universal_36dp">36dp</dimen>
+    <dimen name="universal_40dp">40dp</dimen>
+    <dimen name="universal_45dp">45dp</dimen>
+    <dimen name="universal_48dp">48dp</dimen>
+    <dimen name="universal_52dp">52dp</dimen>
+    <dimen name="universal_56dp">56dp</dimen>
+    <dimen name="universal_60dp">60dp</dimen>
+    <dimen name="universal_64dp">64dp</dimen>
+    <dimen name="universal_70dp">70dp</dimen>
+    <dimen name="universal_72dp">72dp</dimen>
+    <dimen name="universal_80dp">80dp</dimen>
+    <dimen name="universal_104dp">104dp</dimen>
+    <dimen name="universal_124dp">124dp</dimen>
+    <dimen name="universal_172dp">172dp</dimen>
+    <dimen name="universal_178dp">178dp</dimen>
+    <dimen name="universal_200dp">200dp</dimen>
+    <dimen name="universal_222dp">222dp</dimen>
+    <dimen name="universal_283dp">283dp</dimen>
+    <dimen name="universal_292dp">292dp</dimen>
+    <dimen name="universal_2962dp">296dp</dimen>
+    <dimen name="universal_324dp">324dp</dimen>
+    <dimen name="universal_326dp">326dp</dimen>
+    <dimen name="universal_360dp">360dp</dimen>
+    <dimen name="universal_450dp">450dp</dimen>
+
+    <!--universal sps -->
+    <dimen name="universal_1sp">1sp</dimen>
+    <dimen name="universal_2sp">2sp</dimen>
+    <dimen name="universal_4sp">4sp</dimen>
+    <dimen name="universal_5sp">5sp</dimen>
+    <dimen name="universal_6sp">6sp</dimen>
+    <dimen name="universal_8sp">8sp</dimen>
+    <dimen name="universal_10sp">10sp</dimen>
+    <dimen name="universal_12sp">12sp</dimen>
+    <dimen name="universal_14sp">14sp</dimen>
+    <dimen name="universal_15sp">15sp</dimen>
+    <dimen name="universal_18sp">18sp</dimen>
+    <dimen name="universal_16sp">16sp</dimen>
+    <dimen name="universal_20sp">20sp</dimen>
+    <dimen name="universal_22sp">22sp</dimen>
+    <dimen name="universal_26sp">26sp</dimen>
+    <dimen name="universal_28sp">28sp</dimen>
+    <dimen name="universal_25sp">25sp</dimen>
+    <dimen name="universal_30sp">30sp</dimen>
+    <dimen name="universal_35sp">35sp</dimen>
+    <dimen name="universal_40sp">40sp</dimen>
+
+</resources>

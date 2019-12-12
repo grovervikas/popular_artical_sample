@@ -1,0 +1,131 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="articleItemViewModel"
+            type="com.article.app.vm.ArticleItemViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPaleGrey"
+        android:onClick="@{ () -> articleItemViewModel.onItemClick()}"
+        android:paddingStart="@dimen/universal_8dp"
+        android:paddingLeft="@dimen/universal_8dp"
+        android:paddingTop="@dimen/universal_12dp"
+        android:paddingEnd="@dimen/universal_8dp"
+        android:paddingRight="@dimen/universal_8dp"
+        android:paddingBottom="@dimen/universal_12dp">
+
+        <ImageView
+            android:id="@+id/thumbArticle"
+            android:layout_width="@dimen/universal_45dp"
+            android:layout_height="@dimen/universal_45dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{articleItemViewModel.thumbnail()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_place_holder"
+            tools:ignore="ContentDescription" />
+
+
+        <ImageView
+            android:layout_width="@dimen/universal_20dp"
+            android:layout_height="@dimen/universal_20dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/right_arrow"
+            tools:ignore="ContentDescription" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtViewMovieName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center|start"
+            android:maxLines="1"
+            android:paddingStart="@dimen/universal_10dp"
+            android:paddingLeft="@dimen/universal_10dp"
+            android:paddingEnd="@dimen/universal_15dp"
+            android:paddingRight="@dimen/universal_15dp"
+            android:text="@{articleItemViewModel.title()}"
+            android:textColor="@color/lang_color_dark_blue"
+            android:textSize="@dimen/universal_14sp"
+            app:fontFamily="@font/helvetica_neu_bold"
+            app:layout_constraintLeft_toRightOf="@+id/thumbArticle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.8" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtViewAbout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/universal_8dp"
+            android:layout_toEndOf="@+id/thumbArticle"
+            android:layout_toRightOf="@+id/thumbArticle"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:paddingStart="@dimen/universal_10dp"
+            android:paddingLeft="@dimen/universal_10dp"
+            android:paddingEnd="@dimen/universal_15dp"
+            android:paddingRight="@dimen/universal_15dp"
+            android:text="@{articleItemViewModel.about()}"
+            android:textColor="@color/lang_color_light_grey"
+            android:textSize="@dimen/universal_12sp"
+            app:fontFamily="@font/helvetica_neue_medium"
+            app:layout_constraintLeft_toRightOf="@+id/thumbArticle"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewMovieName"
+            app:layout_constraintWidth_percent="0.8" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtViewRating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/universal_5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingStart="@dimen/universal_10dp"
+            android:paddingLeft="@dimen/universal_10dp"
+            android:paddingEnd="@dimen/universal_15dp"
+            android:paddingRight="@dimen/universal_15dp"
+            android:text="@{articleItemViewModel.author()}"
+            android:textColor="@color/lang_color_light_grey"
+            android:textSize="@dimen/universal_12sp"
+            app:fontFamily="@font/helvetica_neue_medium"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/thumbArticle"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewAbout"
+            app:layout_constraintWidth_percent="0.5" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/created_at"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/universal_5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{articleItemViewModel.created_at()}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/universal_12sp"
+            app:fontFamily="@font/helvetica_neu_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewAbout"
+            app:layout_constraintWidth_percent="0.3" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

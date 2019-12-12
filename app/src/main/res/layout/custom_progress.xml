@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools" android:layout_width="@dimen/universal_104dp"
+              android:layout_height="@dimen/universal_104dp"
+              android:layout_gravity="center"
+              android:background="@drawable/search_bg"
+              android:gravity="center">
+
+
+    <ProgressBar
+            android:layout_width="@dimen/universal_70dp"
+            android:layout_height="@dimen/universal_70dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorAccent"
+            android:indeterminateTintMode="src_atop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" tools:ignore="UnusedAttribute"/>
+</LinearLayout>

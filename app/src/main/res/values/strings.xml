@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Sample Article App</string>
+    <string name="title_product_list">Article List</string>
+    <string name="title_product_details">Article Details</string>
+    <string name="title_base">Base</string>
+    <string name="no_internet_connection">It seems be there is no internet connection available.</string>
+    <string name="product_list_empty">Article List Empty.</string>
+    <string name="product_list_api_error">There is some problem while getting products.</string>
+    <string name="title_about_movie">About</string>
+</resources>
