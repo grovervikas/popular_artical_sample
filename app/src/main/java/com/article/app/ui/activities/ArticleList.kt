@@ -9,9 +9,13 @@ import com.article.app.BaseViewModelActivity
 import com.article.app.Const
 import com.article.app.R
 import com.article.app.databinding.ActivityArticleListBinding
+import com.article.app.netio.ApiConst
+import com.article.app.netio.BaseApiClient
+import com.article.app.netio.RetrofitInterface
 import com.article.app.utils.ActivitySwitcher
 import com.article.app.utils.SnackBarUtils
 import com.article.app.vm.ArticleListViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_article_list.*
 
 /**
@@ -37,6 +41,11 @@ class ArticleList : BaseViewModelActivity<ArticleListViewModel>() {
             ActivitySwitcher.switchActivity(this, intent, withHandler = false, isFinish = false)
         })
         articleListViewModel.int(this, binding)
+        articleListViewModel.setAppServiceInterface(BaseApiClient.getClient(ApiConst.BASE_URL)
+            .create(RetrofitInterface::class.java), AndroidSchedulers.mainThread())
+        articleListViewModel.articleList()
+        articleListViewModel.mutablePostList.observe(this, Observer { articleListViewModel.populateArticles(it) })
+
     }
 
     override fun onDestroy() {

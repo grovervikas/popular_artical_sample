@@ -3,6 +3,10 @@ package com.article.app.utils
 import android.app.Activity
 import com.google.android.material.snackbar.Snackbar
 
+/**
+ * @author vikas.grover
+ * SnackBar Utils
+ */
 class SnackBarUtils {
 
     companion object {

@@ -3,7 +3,10 @@ package com.article.app.utils
 import android.graphics.*
 import com.squareup.picasso.Transformation
 
-
+/**
+ * @author vikas.grover
+ * Circle Transformation Class
+ */
 class CircleTransform : Transformation {
 
     override fun transform(source: Bitmap): Bitmap? {

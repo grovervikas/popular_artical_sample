@@ -8,6 +8,7 @@ import android.os.Build
 
 /**
  * @author vikas.grover
+ * Network Utils : Required Permission 'android.permission.ACCESS_NETWORK_STATE', 'android.permission.ACCESS_WIFI_STATE'
  */
 object NetworkUtils {
 

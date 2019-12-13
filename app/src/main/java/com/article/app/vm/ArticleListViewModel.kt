@@ -2,22 +2,21 @@ package com.article.app.vm
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.article.app.BaseViewModel
 import com.article.app.R
 import com.article.app.adapter.ArticleListAdapter
 import com.article.app.databinding.ActivityArticleListBinding
 import com.article.app.model.Article
-import com.article.app.netio.ApiConst
-import com.article.app.netio.BaseApiClient
 import com.article.app.netio.RetrofitInterface
-import com.article.app.utils.NetworkUtils
 import com.article.app.utils.SingleLiveEvent
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 /**
  * @author vikas.grover
@@ -35,29 +34,38 @@ class ArticleListViewModel : BaseViewModel(), ArticleListAdapter.ArticleAdapterL
     private val _proceedToProductDetails = SingleLiveEvent<Article>()
     val proceedToArticleDetails: LiveData<Article> get() = _proceedToProductDetails
     private var articleList: ArrayList<Article> = ArrayList()
+    val mutablePostList: MutableLiveData<List<Article>> = MutableLiveData()
+        get() = field
+    private lateinit var appService : RetrofitInterface
+    private lateinit var schedulers: Scheduler
+
 
     fun int(context: Context, binding: ActivityArticleListBinding) {
         this.context = context
         this.binding = binding
+    }
+
+    fun getAppServiceInterface() = appService
+
+    fun setAppServiceInterface(appService : RetrofitInterface, schedulers: Scheduler){
+        this.appService = appService
         myCompositeDisposable = CompositeDisposable()
-        articleList()
+        this.schedulers = schedulers
     }
 
     override fun update(p0: Observable?, p1: Any?) {
     }
 
     // get article list
-    private fun articleList() {
-        if (!NetworkUtils.isNetworkAvailable(context!!)) {
-            _showDismissSnackBar.value = context?.resources?.getString(R.string.no_internet_connection)
-            return
-        }
+    fun articleList() {
+//        if (!NetworkUtils.isNetworkAvailable(context!!)) {
+//            _showDismissSnackBar.value = context?.resources?.getString(R.string.no_internet_connection)
+//            return
+//        }
         _showDismissProgressDialog.value = true
-        val appService = BaseApiClient.getClient(ApiConst.BASE_URL)
-            .create(RetrofitInterface::class.java)
         decomposableObject()?.add(
-            appService.articles()
-                .observeOn(AndroidSchedulers.mainThread())
+            getAppServiceInterface().articles()
+                .observeOn(schedulers)
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError)
         )
@@ -67,6 +75,11 @@ class ArticleListViewModel : BaseViewModel(), ArticleListAdapter.ArticleAdapterL
 
     // api response  : list of articles
     private fun handleResponse(list: List<Article>) {
+        mutablePostList.value = list
+    }
+
+    // populate List
+    fun populateArticles(list: List<Article>){
         _showDismissProgressDialog.value = false
         if (list.isNullOrEmpty()) {
             _showDismissSnackBar.value = context?.resources?.getString(R.string.product_list_empty)
