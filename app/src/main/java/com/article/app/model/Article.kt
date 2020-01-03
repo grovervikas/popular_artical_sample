@@ -14,5 +14,4 @@ data class Article(
     val created_at: String = "",
     val updated_at: String = "",
     val about: String = "",
-    val author: String = ""
-) : Serializable
+    val author: String = "") : Serializable

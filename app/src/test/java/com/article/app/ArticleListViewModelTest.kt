@@ -1,5 +1,6 @@
 package com.article.app
 
+import androidx.arch.core.executor.TaskExecutor
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -7,6 +8,7 @@ import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.Observer
 import com.article.app.model.Article
 import com.article.app.netio.RetrofitInterface
+import com.article.app.ui.activities.ArticleList
 import com.article.app.vm.ArticleListViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -33,7 +33,7 @@ class ArticleListAdapter(private val items: List<Article>, private var articleAd
 
     override fun getItemCount(): Int = items.size
 
-    inner class ArticleViewHolder(val binding: ArticleItemBinding) :
+    public inner class ArticleViewHolder(val binding: ArticleItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun handleItemClick(article: Article) {
