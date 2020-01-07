@@ -29,19 +29,25 @@ class ArticleListAdapter(private val items: List<Article>, private var articleAd
         val articleItemViewModel = ArticleItemViewModel()
         articleItemViewModel.onDataAvailable(items[position], this)
         holder.binding.articleItemViewModel = articleItemViewModel
+        holder.binding.article = items[position]
     }
 
     override fun getItemCount(): Int = items.size
 
-    public inner class ArticleViewHolder(val binding: ArticleItemBinding) :
+    inner class ArticleViewHolder(val binding: ArticleItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun handleItemClick(article: Article) {
         articleAdapterListener.adapterItemClick(article)
     }
 
+    override fun openImageInBigSize(article: Article) {
+        articleAdapterListener.adapterImageClick(article)
+    }
+
     interface ArticleAdapterListener {
         fun adapterItemClick(article: Article)
+        fun adapterImageClick(article: Article)
     }
 
 }

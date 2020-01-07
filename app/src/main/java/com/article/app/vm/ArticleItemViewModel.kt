@@ -18,12 +18,12 @@ import java.util.*
 class ArticleItemViewModel : BaseViewModel() {
 
     private var article: Article? = null
-    private var productItemListener :ArticleItemListener ? = null
+    private var productItemListener: ArticleItemListener? = null
 
     override fun update(p0: Observable?, p1: Any?) {
     }
 
-    fun onDataAvailable(article: Article, productItemListener :ArticleItemListener ) {
+    fun onDataAvailable(article: Article, productItemListener: ArticleItemListener) {
         this.article = article
         this.productItemListener = productItemListener
     }
@@ -40,8 +40,12 @@ class ArticleItemViewModel : BaseViewModel() {
 
     fun author() = article!!.author
 
+    fun showImageInBiggerSize() {
+        productItemListener?.openImageInBigSize(article!!)
+    }
 
-    fun onItemClick(){
+
+    fun onItemClick() {
         productItemListener?.handleItemClick(article!!)
     }
 
@@ -49,6 +53,7 @@ class ArticleItemViewModel : BaseViewModel() {
         @JvmStatic
         @BindingAdapter("imageUrl")
         fun setImageUrl(imageView: ImageView, url: String?) {
+            if (url.isNullOrEmpty()) return
             Picasso.get().load(url)
                 .transform(CircleTransform())
                 .resize(Const.MAX_WIDTH, Const.MAX_HEIGHT)
@@ -57,11 +62,24 @@ class ArticleItemViewModel : BaseViewModel() {
                 .error(R.drawable.ic_place_holder)
                 .into(imageView)
         }
+
+        @JvmStatic
+        @BindingAdapter("articleUrl")
+        fun setarticleUrl(imageView: ImageView, url: String?) {
+            if (url.isNullOrEmpty()) return
+            Picasso.get().load(url)
+                .resize(Const.MAX_WIDTH, Const.MAX_HEIGHT)
+                .centerCrop()
+                .placeholder(R.drawable.ic_place_holder)
+                .error(R.drawable.ic_place_holder)
+                .into(imageView)
+        }
     }
 
-    interface ArticleItemListener{
-        fun handleItemClick(article: Article)
 
+interface ArticleItemListener {
+        fun handleItemClick(article: Article)
+        fun openImageInBigSize(article: Article)
     }
 
 }

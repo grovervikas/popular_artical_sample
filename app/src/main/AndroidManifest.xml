@@ -13,6 +13,7 @@
                  tools:ignore="GoogleAppIndexingWarning"
                  android:icon="@mipmap/ic_launcher"
                  android:roundIcon="@mipmap/ic_launcher_round"
+                 android:usesCleartextTraffic="true"
                  android:supportsRtl="true"
                  android:theme="@style/AppTheme">
 
@@ -44,6 +45,13 @@
                 android:label="@string/title_base"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name="com.article.app.ui.activities.BiggerImage"
+            android:label="@string/title_product_details"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
 

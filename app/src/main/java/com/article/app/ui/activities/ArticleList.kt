@@ -45,7 +45,10 @@ class ArticleList : BaseViewModelActivity<ArticleListViewModel>() {
             .create(RetrofitInterface::class.java), AndroidSchedulers.mainThread())
         articleListViewModel.articleList()
         articleListViewModel.mutablePostList.observe(this, Observer { articleListViewModel.populateArticles(it) })
-
+        articleListViewModel.openImageInBig.observe(this, Observer {
+            val  intent = Intent(this, BiggerImage::class.java)
+            intent.putExtra(Const.KEY_INTENT_PRODUCT_DETAILS,it)
+            ActivitySwitcher.switchActivity(this, intent, withHandler = false, isFinish = false) })
     }
 
     override fun onDestroy() {

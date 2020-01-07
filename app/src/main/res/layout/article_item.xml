@@ -9,6 +9,12 @@
         <variable
             name="articleItemViewModel"
             type="com.article.app.vm.ArticleItemViewModel" />
+
+        <variable
+            name="article"
+            type="com.article.app.model.Article" />
+
+
     </data>
 
 
@@ -125,6 +131,51 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtViewAbout"
             app:layout_constraintWidth_percent="0.3" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/imagesLLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/universal_10dp"
+            android:orientation="horizontal"
+            android:visibility="@{article.images.empty ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/created_at"
+            app:layout_constraintWidth_percent="0.3">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/universal_52dp"
+                android:layout_height="@dimen/universal_52dp"
+                android:scaleType="centerCrop"
+                android:layout_marginRight="@dimen/universal_5dp"
+                android:layout_marginEnd="@dimen/universal_5dp"
+                android:onClick="@{ () -> articleItemViewModel.showImageInBiggerSize()}"
+                app:articleUrl="@{article.images.empty ? null: article.images.get(0)}"
+                app:srcCompat="@drawable/ic_place_holder" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/universal_52dp"
+                android:layout_height="@dimen/universal_52dp"
+                android:scaleType="centerCrop"
+                android:layout_marginRight="@dimen/universal_5dp"
+                android:layout_marginEnd="@dimen/universal_5dp"
+                android:onClick="@{ () -> articleItemViewModel.showImageInBiggerSize()}"
+                app:articleUrl="@{article.images.empty ? null: article.images.get(1)}"
+                app:srcCompat="@drawable/ic_place_holder" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/universal_52dp"
+                android:layout_height="@dimen/universal_52dp"
+                android:scaleType="centerCrop"
+                android:onClick="@{ () -> articleItemViewModel.showImageInBiggerSize()}"
+                app:articleUrl="@{article.images.empty ? null: article.images.get(2)}"
+                app:srcCompat="@drawable/ic_place_holder" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

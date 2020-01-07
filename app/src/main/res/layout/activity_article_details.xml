@@ -7,9 +7,15 @@
 
         <import type="android.view.View" />
 
+        <import type="com.article.app.utils.NetworkUtils"/>
+
         <variable
             name="articleDetailsViewModel"
             type="com.article.app.vm.ArticleDetailsViewModel" />
+
+        <variable
+            name="article"
+            type="com.article.app.model.Article" />
     </data>
 
 
@@ -95,7 +101,7 @@
                         android:paddingEnd="@dimen/universal_32dp"
                         android:paddingRight="@dimen/universal_32dp"
                         android:paddingBottom="@dimen/universal_16dp"
-                        android:text="@{articleDetailsViewModel.title()}"
+                        android:text="@{article.title}"
                         android:textColor="@color/colorDarkBlueGrey"
                         android:textSize="@dimen/universal_26sp"
                         android:visibility="visible"
@@ -143,7 +149,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/universal_16dp"
                                     android:lineSpacingExtra="@dimen/universal_4sp"
-                                    android:text="@{articleDetailsViewModel.author()}"
+                                    android:text="@{article.author}"
                                     android:textColor="@color/colorLightBlueGrey"
                                     android:textSize="@dimen/universal_14sp"
                                     app:fontFamily="@font/helvetica_neu_bold" />
@@ -153,7 +159,8 @@
                                     android:layout_height="@dimen/universal_292dp"
                                     android:layout_marginTop="@dimen/universal_12dp"
                                     android:layout_marginBottom="@dimen/universal_12dp"
-                                    app:imageUrl="@{articleDetailsViewModel.thumbnail()}"
+                                    app:imageUrl="@{article.thumbnail}"
+                                    android:onClick="@{() -> articleDetailsViewModel.openBiggerImage()}"
                                     app:srcCompat="@drawable/ic_place_holder"
                                     tools:ignore="ContentDescription" />
 
@@ -164,7 +171,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_marginTop="@dimen/universal_12dp"
                                     android:layout_marginBottom="@dimen/universal_12dp"
-                                    android:text="@{articleDetailsViewModel.about()}"
+                                    android:text="@{article.about}"
                                     android:textColor="@color/colorDarkBlueGrey"
                                     android:textSize="@dimen/universal_14sp"
                                     app:fontFamily="@font/helvetica_neue_medium" />

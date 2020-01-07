@@ -13,6 +13,7 @@ import com.article.app.netio.RetrofitInterface
 import com.article.app.utils.SingleLiveEvent
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 import kotlin.collections.ArrayList
@@ -36,8 +37,10 @@ class ArticleListViewModel : BaseViewModel(), ArticleListAdapter.ArticleAdapterL
     private var articleList: ArrayList<Article> = ArrayList()
     val mutablePostList: MutableLiveData<List<Article>> = MutableLiveData()
         get() = field
-    private lateinit var appService : RetrofitInterface
+    private lateinit var appService: RetrofitInterface
     private lateinit var schedulers: Scheduler
+    private val _openImageInBig = SingleLiveEvent<Article>()
+    val openImageInBig: LiveData<Article> get() = _openImageInBig
 
 
     fun int(context: Context, binding: ActivityArticleListBinding) {
@@ -47,7 +50,7 @@ class ArticleListViewModel : BaseViewModel(), ArticleListAdapter.ArticleAdapterL
 
     fun getAppServiceInterface() = appService
 
-    fun setAppServiceInterface(appService : RetrofitInterface, schedulers: Scheduler){
+    fun setAppServiceInterface(appService: RetrofitInterface, schedulers: Scheduler) {
         this.appService = appService
         myCompositeDisposable = CompositeDisposable()
         this.schedulers = schedulers
@@ -56,6 +59,22 @@ class ArticleListViewModel : BaseViewModel(), ArticleListAdapter.ArticleAdapterL
     override fun update(p0: Observable?, p1: Any?) {
     }
 
+
+    private fun combineResult(
+        articleListOne: List<Article>,
+        articleListTwo: List<Article>
+    ): List<Article> {
+        if (articleListOne.isNullOrEmpty() || articleListTwo.isNullOrEmpty()) return ArrayList()
+        for ((index, value) in articleListOne.withIndex()) {
+            if (value.id == articleListTwo[index].id) {
+                articleListOne.get(index).images = emptyList()
+                articleListOne.get(index).images = articleListTwo.get(index).images
+            }
+        }
+        return articleListOne;
+    }
+
+
     // get article list
     fun articleList() {
 //        if (!NetworkUtils.isNetworkAvailable(context!!)) {
@@ -63,10 +82,16 @@ class ArticleListViewModel : BaseViewModel(), ArticleListAdapter.ArticleAdapterL
 //            return
 //        }
         _showDismissProgressDialog.value = true
+
         decomposableObject()?.add(
-            getAppServiceInterface().articles()
+            io.reactivex.Observable.combineLatest(getAppServiceInterface()
+                .articles(),
+                getAppServiceInterface().images(),
+                BiFunction<List<Article>, List<Article>, List<Article>> { t1: List<Article>, t2: List<Article> ->
+                    combineResult(t1, t2)
+
+                }).subscribeOn(Schedulers.io())
                 .observeOn(schedulers)
-                .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError)
         )
     }
@@ -79,7 +104,7 @@ class ArticleListViewModel : BaseViewModel(), ArticleListAdapter.ArticleAdapterL
     }
 
     // populate List
-    fun populateArticles(list: List<Article>){
+    fun populateArticles(list: List<Article>) {
         _showDismissProgressDialog.value = false
         if (list.isNullOrEmpty()) {
             _showDismissSnackBar.value = context?.resources?.getString(R.string.product_list_empty)
@@ -101,6 +126,10 @@ class ArticleListViewModel : BaseViewModel(), ArticleListAdapter.ArticleAdapterL
 
     override fun adapterItemClick(article: Article) {
         _proceedToProductDetails.value = article
+    }
+
+    override fun adapterImageClick(article: Article) {
+        _openImageInBig.value = article
     }
 
 }
